@@ -498,6 +498,100 @@ nav::before{
 .am-name{font-family:'Oswald';font-size:12px;font-weight:500;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.07em;}
 
 /* ══════════════════════
+   IMAGERY (photos / galleries / banners)
+══════════════════════ */
+/* Venue card real photos */
+.venue-photo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;
+  transition:transform .6s cubic-bezier(.2,0,0,1);
+}
+.venue-card:hover .venue-photo{transform:scale(1.07);}
+.venue-overlay{z-index:1;}
+.venue-badge{z-index:3;}
+.venue-emblem{
+  position:absolute;bottom:14px;left:14px;z-index:3;
+  width:46px;height:46px;border-radius:11px;
+  background:rgba(6,18,42,0.5);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.22);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+
+/* Full-width showcase banner with caption */
+.showcase{
+  position:relative;border-radius:var(--r3);overflow:hidden;
+  margin-bottom:48px;border:1px solid var(--silver);
+  box-shadow:0 24px 60px rgba(6,18,42,0.18);
+}
+.showcase.dark{border-color:rgba(255,255,255,0.08);}
+.showcase img{
+  width:100%;height:auto;max-height:540px;
+  object-fit:cover;display:block;
+  transition:transform .8s cubic-bezier(.2,0,0,1);
+}
+.showcase:hover img{transform:scale(1.03);}
+.showcase-cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:48px 36px 28px;
+  background:linear-gradient(transparent,rgba(6,18,42,0.88));
+}
+.showcase-cap .sc-eyebrow{
+  font-family:'Share Tech Mono';font-size:10px;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--gold2);margin-bottom:8px;
+}
+.showcase-cap h3{
+  font-family:'Oswald';font-size:30px;font-weight:700;color:#fff;
+  text-transform:uppercase;letter-spacing:0.03em;line-height:1.1;margin-bottom:6px;
+}
+.showcase-cap p{
+  font-size:14px;color:rgba(255,255,255,0.7);max-width:540px;line-height:1.6;
+}
+
+/* Image tile gallery */
+.img-gallery{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;margin-bottom:44px;
+}
+.img-tile{
+  position:relative;border-radius:var(--r2);overflow:hidden;
+  border:1.5px solid var(--silver);background:#fff;
+  aspect-ratio:16/10;transition:all .3s ease;
+}
+.img-tile.dark{border-color:rgba(255,255,255,0.1);}
+.img-tile:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(6,18,42,0.22);}
+.img-tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,0,0,1);
+}
+.img-tile.fit img{object-fit:contain;background:#fff;padding:14px;}
+.img-tile:hover img{transform:scale(1.05);}
+.img-tile.fit:hover img{transform:none;}
+.img-tile-cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:30px 16px 12px;
+  background:linear-gradient(transparent,rgba(6,18,42,0.85));
+  font-family:'Oswald';font-size:13px;font-weight:600;color:#fff;
+  letter-spacing:0.06em;text-transform:uppercase;
+}
+.img-tile.fit .img-tile-cap{
+  background:rgba(6,18,42,0.92);padding:12px 16px;
+}
+
+/* Partners / brought-to-you-by band */
+.partners-band{
+  background:#fff;border-top:1px solid var(--silver);
+  padding:48px 36px 56px;text-align:center;
+}
+.partners-band .pb-title{
+  font-family:'Oswald';font-size:13px;font-weight:600;color:var(--muted);
+  letter-spacing:0.22em;text-transform:uppercase;margin-bottom:28px;
+}
+.partners-band img{
+  width:100%;max-width:880px;height:auto;display:block;margin:0 auto;
+}
+
+/* ══════════════════════
    PAYMENT CALCULATOR
 ══════════════════════ */
 .calc-wrap{
@@ -825,6 +919,10 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
   .hst{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);}
   .pay-field-group,.card-row{grid-template-columns:1fr;}
   .pay-stepper{flex-wrap:wrap;}
+  .showcase-cap{padding:30px 20px 18px;}
+  .showcase-cap h3{font-size:22px;}
+  .showcase img{max-height:300px;}
+  .partners-band{padding:36px 20px 40px;}
 }
 </style>
 </head>
@@ -1054,6 +1152,17 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
       <p class="sec-body white">Two purpose-built championship venues sharing a premier concourse — a 25,000-seat cricket ground and a 20,000-seat soccer stadium designed to international federation standards.</p>
     </div>
     <div class="venues-grid" id="venuesGrid"></div>
+    <div class="sec-row reveal" style="margin-top:64px;">
+      <div>
+        <div class="eyebrow white">Stadium Architecture</div>
+        <h2 class="sec-title white">The VIP<br>Pavilion</h2>
+      </div>
+      <p class="sec-body white" style="max-width:420px;">A signature three-story, 20,000 sq ft pavilion crowns the complex — housing team locker rooms, players' lounges, conference suites, and a rooftop viewing deck overlooking both grounds.</p>
+    </div>
+    <div class="img-gallery reveal">
+      <div class="img-tile dark fit"><img src="usopen2.jpeg" alt="Three-story VIP pavilion floor plans and rendering" loading="lazy"><div class="img-tile-cap">3-Story VIP Pavilion · 20,000 sq ft</div></div>
+      <div class="img-tile dark fit"><img src="usopen3.jpeg" alt="Overall architectural dimensions of the VIP pavilion" loading="lazy"><div class="img-tile-cap">Architectural Overview &amp; Dimensions</div></div>
+    </div>
   </div>
 </section>
 
@@ -1062,6 +1171,14 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
 <!-- ABOUT / VISION -->
 <section id="vision" class="section section-off">
   <div class="wrap">
+    <div class="showcase reveal">
+      <img src="usopen12.jpeg" alt="Aerial night view of the US Sports Complex stadiums and central pavilion" loading="lazy">
+      <div class="showcase-cap">
+        <div class="sc-eyebrow">A $320M Landmark · Fayetteville, NC</div>
+        <h3>Where World Sport<br>Meets American Excellence</h3>
+        <p>Two championship grounds, a signature pavilion, resort amenities, and 280+ luxury residences — all on one floodlit campus adjacent to Fort Liberty.</p>
+      </div>
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;" class="reveal">
       <div>
         <div class="eyebrow">About The Complex</div>
@@ -1088,6 +1205,11 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
         <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;" id="filterBtns"></div>
       </div>
     </div>
+    <div class="img-gallery reveal">
+      <div class="img-tile"><img src="usopen4.jpeg" alt="Aerial view of luxury residences overlooking the cricket ground" loading="lazy"><div class="img-tile-cap">Premiere Active Living</div></div>
+      <div class="img-tile fit"><img src="usopen5.jpeg" alt="Floor plans for 1, 2, and 3 bedroom residence units" loading="lazy"><div class="img-tile-cap">Unit Floor Plans · 1–3 Bedroom</div></div>
+      <div class="img-tile fit"><img src="usopen6.jpeg" alt="Architectural elevations of the residence buildings" loading="lazy"><div class="img-tile-cap">Building Elevations</div></div>
+    </div>
     <div class="res-grid" id="resGrid"></div>
   </div>
 </section>
@@ -1101,6 +1223,14 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
         <h2 class="sec-title white">World-Class<br>Amenities</h2>
       </div>
       <p class="sec-body white" style="max-width:380px;">Every resident enjoys full access to a resort-style amenity package curated for athletes, families, and professionals.</p>
+    </div>
+    <div class="showcase dark reveal">
+      <img src="usopen13.jpeg" alt="State-of-the-art fitness center overlooking the resort pool" loading="lazy">
+      <div class="showcase-cap">
+        <div class="sc-eyebrow">Fuel · Focus · Finish</div>
+        <h3>The Performance<br>Fitness Center</h3>
+        <p>A professional-grade gym and strength floor with floor-to-ceiling views of the resort pool — recovery, training, and wellness under one roof.</p>
+      </div>
     </div>
     <div class="am-grid" id="amenityGrid"></div>
   </div>
@@ -1440,6 +1570,12 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
   </div>
 </section>
 
+<!-- PARTNERS -->
+<div class="partners-band">
+  <div class="pb-title">Our Partners</div>
+  <img src="usopen1.jpeg" alt="In partnership with MAQ Group, the City of Fayetteville, and Cricket Council USA" loading="lazy">
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1505,6 +1641,7 @@ const VENUES = [
     spec:"25,000-Seat International Ground · ICC Certified",
     badge:"FLAGSHIP",badgeClass:"red",
     bg:"linear-gradient(135deg,#0A1F10,#1A3A22)",
+    img:"usopen9.jpeg",
     icon:"🏏",
     chips:["ICC Certified","Day/Night Floodlights","Electronic Scoreboard","Press Box","VIP Suites"],
     chipClasses:["chip-g","chip-w","chip-w","chip-w","chip-r"],
@@ -1515,6 +1652,7 @@ const VENUES = [
     spec:"20,000-Seat Multi-Use Football Ground",
     badge:"MLS STANDARD",badgeClass:"green",
     bg:"linear-gradient(135deg,#0A1A12,#1A3028)",
+    img:"usopen14.jpeg",
     icon:"⚽",
     chips:["FIFA Certified","Hybrid Grass","VAR Ready","Full Media Suite","Hospitality Boxes"],
     chipClasses:["chip-g","chip-w","chip-w","chip-w","chip-b"],
@@ -1525,6 +1663,7 @@ const VENUES = [
     spec:"Premier Fan Experience · Retail & Dining Hub",
     badge:"YEAR-ROUND",badgeClass:"blue",
     bg:"linear-gradient(135deg,#0A1228,#1A2448)",
+    img:"usopen8.jpeg",
     icon:"🏛",
     chips:["12 Restaurants","Retail Stores","Fan Zones","Sports Bar","Event Terrace"],
     chipClasses:["chip-r","chip-w","chip-w","chip-b","chip-w"],
@@ -1535,6 +1674,7 @@ const VENUES = [
     spec:"Professional-Grade Training & Recovery Center",
     badge:"MEMBERS ONLY",badgeClass:"blue",
     bg:"linear-gradient(135deg,#15100A,#2E2010)",
+    img:"usopen11.jpeg",
     icon:"💪",
     chips:["Olympic Gym","Cricket Nets","Soccer Pitches","Ice Recovery","Physio Suite"],
     chipClasses:["chip-r","chip-g","chip-g","chip-b","chip-w"],
@@ -1545,6 +1685,7 @@ const VENUES = [
     spec:"Resort Pool · Olympic Training Pool",
     badge:"LUXURY",badgeClass:"blue",
     bg:"linear-gradient(135deg,#081828,#0E2840)",
+    img:"usopen7.jpeg",
     icon:"🏊",
     chips:["Olympic Pool","Lap Lanes","Hot Tub","Poolside Bar","Cabanas"],
     chipClasses:["chip-b","chip-w","chip-r","chip-r","chip-w"],
@@ -1555,6 +1696,7 @@ const VENUES = [
     spec:"Multi-Purpose Ballroom & Conference Venue",
     badge:"AVAILABLE",badgeClass:"red",
     bg:"linear-gradient(135deg,#18100A,#301E0E)",
+    img:"usopen10.jpeg",
     icon:"🎪",
     chips:["2,500 Capacity","AV Suite","Catering","Breakout Rooms","Valet"],
     chipClasses:["chip-r","chip-w","chip-w","chip-w","chip-b"],
@@ -1689,11 +1831,16 @@ const TICK_ITEMS = [
     const chips = v.chips.map((c,i)=>`<span class="chip ${v.chipClasses[i]}">${c}</span>`).join('');
     const d = document.createElement('div');
     d.className='venue-card';
+    const visual = v.img
+      ? `<img class="venue-photo" src="${v.img}" alt="${v.name} at US Sports Complex Fayetteville" loading="lazy">
+         <div class="venue-overlay"></div>
+         <span class="venue-emblem">${v.icon}</span>`
+      : `<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;"></div>
+         <div class="venue-icon">${v.icon}</div>
+         <div class="venue-overlay"></div>`;
     d.innerHTML=`
       <div class="venue-visual" style="background:${v.bg}">
-        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:28px 28px;"></div>
-        <div class="venue-icon">${v.icon}</div>
-        <div class="venue-overlay"></div>
+        ${visual}
         <span class="venue-badge ${v.badgeClass}">${v.badge}</span>
       </div>
       <div class="venue-body">
