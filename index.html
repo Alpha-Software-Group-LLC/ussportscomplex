@@ -105,6 +105,9 @@ nav::before{
   transition:all .2s;
 }
 .nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,0.07);}
+a.nav-link{text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+a.nav-link .ext{font-size:10px;opacity:0.6;}
+a.f-link{text-decoration:none;}
 .nav-right{display:flex;gap:10px;align-items:center;flex-shrink:0;}
 .btn-ghost{
   padding:8px 18px;border-radius:var(--r);
@@ -947,6 +950,7 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
       <button class="nav-link" onclick="scrollToS('residences')">Residences</button>
       <button class="nav-link" onclick="scrollToS('amenities')">Amenities</button>
       <button class="nav-link" onclick="scrollToS('location')">Location</button>
+      <a class="nav-link" href="https://usopensports.com" target="_blank" rel="noopener noreferrer" title="US Open Sports — Equipment Shop">Shop<span class="ext">↗</span></a>
     </div>
     <div class="nav-right">
       <button class="btn-ghost" onclick="scrollToS('calculator')">Payment Calc</button>
@@ -1598,6 +1602,7 @@ footer::before{content:'';display:block;height:3px;background:linear-gradient(90
         <span class="f-link" onclick="scrollToS('venues')">Event Spaces</span>
         <span class="f-link" onclick="scrollToS('venues')">Tournament Hosting</span>
         <span class="f-link" onclick="scrollToS('venues')">Team Partnerships</span>
+        <a class="f-link" href="https://usopensports.com" target="_blank" rel="noopener noreferrer">Equipment Shop ↗</a>
       </div>
     </div>
     <div>
